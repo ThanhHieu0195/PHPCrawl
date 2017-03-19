@@ -2,7 +2,7 @@
 
 set_time_limit(10000);
 $INDEX = 1;
-$MAX_URL = 2;
+$MAX_URL = 5000;
 $LINK_URL_HTML = '';
 include("libs/PHPCrawler.class.php");
 include_once 'simple_html_dom.php';
