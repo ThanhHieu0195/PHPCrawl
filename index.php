@@ -2,7 +2,7 @@
 
 set_time_limit(10000);
 $INDEX = 1;
-$MAX_URL = 5000;
+$MAX_URL = 2;
 $LINK_URL_HTML = '';
 include("libs/PHPCrawler.class.php");
 include_once 'simple_html_dom.php';
@@ -17,13 +17,15 @@ class MyCrawler extends PHPCrawler
     echo "Page requested: ".$DocInfo->url." (".$DocInfo->http_status_code.")".$lb;
     
     echo "Referer-page: ".$DocInfo->referer_url.$lb;
-    $html = file_get_html($DocInfo->url);
-    $name_file_html = 'html/'.$INDEX.'.html';
-    $html->save($name_file_html);
-    $row_html = $INDEX.'. '.$DocInfo->url."\n";
-    $INDEX++;
+
     if ($DocInfo->received == true){
         echo "Content received: ".$DocInfo->bytes_received." bytes".$lb;
+
+        $html = file_get_html($DocInfo->url);
+        $name_file_html = 'html/'.$INDEX.'.html';
+        $html->save($name_file_html);
+        $row_html = $INDEX.'. '.$DocInfo->url."\n";
+        $INDEX++;
         $LINK_URL_HTML .= $row_html;
     }
     else
